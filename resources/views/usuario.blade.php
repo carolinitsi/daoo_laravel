@@ -9,14 +9,13 @@
 </head>
 <body>
     @if ($usuario)
-        <h1>{{ $usuario->nome }}</h1>
-        <p>{{ $usuario->email }}</p>
-        <ul>
-            <li>Competencias: {{ $usuario->competencias }}</li>
-        </ul>
+        <h1>Informações:</h1>
+        <p>Nome:{{ $usuario->nome }}</p>
+        <p>Email:{{ $usuario->email }}</p>
+        <p>Competencias: {{ $usuario->competencias }}</p>
     @else
         <p>Produtos não encontrados! </p>
     @endif
-    <a href="/usuario">&#9664;Voltar</a>
+    <a href="/usuarios">&#9664;Voltar</a>
 </body>
 </html>

@@ -21,7 +21,12 @@
             <tr>
                 <td><a href="/post/{{$post->id}}">{{$post->id}}</a></td>
                 <td>{{$post->assunto}}</td>
+                <td>
+                    <a href="{{route('delete',$post->id)}}" title="Deletar">&#128465</a>
+                    <a href="{{route('edit',$post->id)}}" title="Editar">Editar</a>
+                </td>
             </tr>
+            
             @endforeach
         </tbody>
     </table>

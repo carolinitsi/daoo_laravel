@@ -7,16 +7,15 @@
     <title>Lista de Usuarios</title>
 </head>
 <body>
-    <h1>Produtos</h1>
+    <h1>Lista de usuárias:</h1>
     @if ($usuarios->count()>0)
     <table>
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
-                <th>qtd_estoque</th>
-                <th>preco</th>
-                <th>Importado</th>
+                <th>Email</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +24,10 @@
                 <td><a href="/usuario/{{$usuario->id}}">{{$usuario->id}}</a></td>
                 <td>{{$usuario->nome}}</td>
                 <td>{{$usuario->email}}</td>
+                <td>
+                    <a href="{{route('delete',$usuario->id)}}" title="Deletar">&#128465</a>
+                    <a href="{{route('edit',$usuario->id)}}" title="Editar">Editar</a>
+                </td>
             </tr>
             @endforeach
         </tbody>

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->text('nome');
             $table->text('email');
             $table->text('competencias');
+            $table->text('profissao');
+            $table->text('senha');
+
         });
     }
 

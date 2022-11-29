@@ -21,6 +21,10 @@
             <tr>
                 <td><a href="/comentario/{{$comentario->id}}">{{$comentario->id}}</a></td>
                 <td>{{$comentario->comentario}}</td>
+                <td>
+                    <a href="{{route('delete',$comentario->id)}}" title="Deletar">&#128465</a>
+                    <a href="{{route('edit',$comentario->id)}}" title="Editar">Editar</a>
+                </td>
             </tr>
             @endforeach
         </tbody>
