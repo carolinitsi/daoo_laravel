@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28-Nov-2022 às 14:52
+-- Tempo de geração: 29-Nov-2022 às 01:25
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `banco_programamina`
+-- Banco de dados: `banco_tcc_daoo`
 --
 
 -- --------------------------------------------------------
@@ -273,134 +273,27 @@ INSERT INTO `chat` (`id_de`, `id_para`, `mensagem`, `data_mensagem`, `id`) VALUE
 --
 
 CREATE TABLE `comentarios` (
-  `id_comentario` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_post` int(11) NOT NULL,
+  `id` int(5) UNSIGNED NOT NULL,
   `comentario` text NOT NULL,
-  `data_comentario` date NOT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `comentarios`
 --
 
-INSERT INTO `comentarios` (`id_comentario`, `id_usuario`, `id_post`, `comentario`, `data_comentario`) VALUES
-(1, 2, 5, 'Que massa!', '0000-00-00'),
-(2, 1, 5, 'Css3 é muito legal mesmo!', '0000-00-00'),
-(3, 2, 2, 'Html é uma lingaguem de estilização!', '0000-00-00'),
-(4, 1, 1, 'Php é mó legal', '0000-00-00'),
-(5, 1, 6, 'ux é ruin', '0000-00-00'),
-(7, 1, 1, 'meu comentario no meu post.', '0000-00-00'),
-(8, 1, 5, 'zzzz', '0000-00-00'),
-(9, 1, 1, '', '0000-00-00'),
-(10, 1, 5, 'css aprendi no 1 semestre da faculdade.', '0000-00-00'),
-(11, 1, 5, 'meu comentario no meu post.', '0000-00-00'),
-(12, 3, 1, 'Bacana seu post!', '0000-00-00'),
-(13, 3, 5, 'css aprendi no 1 semestre da faculdade.', '0000-00-00'),
-(14, 1, 0, 'meu comentário teste no post de css!', '0000-00-00'),
-(15, 5, 5, 'comentario', '0000-00-00'),
-(16, 1, 5, 'comentario', '0000-00-00'),
-(17, 1, 1, 'teste de comentário 19/07', '0000-00-00'),
-(18, 1, 2, 'Apresentando o projeto', '0000-00-00'),
-(19, 1, 10, 'post legal', '0000-00-00'),
-(20, 3, 17, 'primeiro comentario', '0000-00-00'),
-(21, 1, 9, 'primeiro comentario', '0000-00-00'),
-(22, 1, 16, 'primeiro comentario', '0000-00-00'),
-(23, 1, 21, 'primeiro comentario', '0000-00-00'),
-(24, 1, 17, 'Segundo comentário.', '0000-00-00'),
-(25, 16, 16, '❤️', '0000-00-00'),
-(26, 16, 26, '????', '0000-00-00'),
-(27, 16, 26, '❤️', '0000-00-00'),
-(28, 16, 26, '????', '0000-00-00'),
-(29, 16, 26, '????', '0000-00-00'),
-(30, 16, 26, '????', '0000-00-00'),
-(31, 16, 26, '????', '0000-00-00'),
-(32, 16, 26, '☺️', '0000-00-00'),
-(33, 16, 26, '????', '0000-00-00'),
-(34, 16, 26, '????', '0000-00-00'),
-(35, 16, 26, '????', '0000-00-00'),
-(36, 3, 26, 'PageMaker including versions of Lorem Ipsum.', '0000-00-00'),
-(37, 1, 27, 'teste', '0000-00-00'),
-(38, 1, 25, '❤️', '0000-00-00'),
-(39, 1, 26, '❤️', '0000-00-00'),
-(40, 1, 26, 'PageMaker including versions of Lorem Ipsum.PageMaker including versions of Lorem Ipsum.PageMaker including versions of Lorem Ipsum.PageMaker including versions of Lorem Ipsum.', '0000-00-00'),
-(41, 1, 26, 'uuuh', '0000-00-00'),
-(42, 1, 26, 'teste', '0000-00-00'),
-(43, 1, 31, 'teste', '0000-00-00'),
-(44, 1, 27, '????', '0000-00-00'),
-(45, 1, 31, '????', '0000-00-00'),
-(46, 1, 16, 'teste', '0000-00-00'),
-(47, 1, 31, 'Coração', '0000-00-00'),
-(48, 1, 31, '', '0000-00-00'),
-(49, 1, 31, 'tartaruga', '0000-00-00'),
-(50, 1, 31, 'abelha', '0000-00-00'),
-(51, 1, 31, '', '0000-00-00'),
-(52, 1, 31, '', '0000-00-00'),
-(53, 1, 31, '', '0000-00-00'),
-(54, 1, 29, '', '0000-00-00'),
-(55, 1, 29, '', '0000-00-00'),
-(56, 1, 29, '', '0000-00-00'),
-(57, 1, 29, '', '0000-00-00'),
-(58, 1, 31, '', '0000-00-00'),
-(59, 1, 31, '', '0000-00-00'),
-(60, 1, 31, '', '0000-00-00'),
-(61, 1, 31, '', '0000-00-00'),
-(62, 1, 31, '', '0000-00-00'),
-(63, 1, 31, '', '0000-00-00'),
-(64, 1, 31, '', '0000-00-00'),
-(65, 1, 30, 'teste teste', '0000-00-00'),
-(66, 1, 31, 'Baby', '0000-00-00'),
-(67, 1, 29, '❤️', '0000-00-00'),
-(68, 1, 31, 'abóbora', '0000-00-00'),
-(69, 1, 29, 'Arroz', '0000-00-00'),
-(70, 1, 29, 'Arroz', '0000-00-00'),
-(71, 1, 29, 'Arroz', '0000-00-00'),
-(72, 1, 29, '', '0000-00-00'),
-(73, 1, 29, '', '0000-00-00'),
-(74, 1, 29, 'borboleta', '0000-00-00'),
-(75, 1, 29, 'Azul', '0000-00-00'),
-(76, 1, 29, 'Rosa', '0000-00-00'),
-(77, 1, 27, 'Amarelo', '0000-00-00'),
-(78, 1, 27, 'Amarelo', '0000-00-00'),
-(79, 1, 27, 'Amarelo', '0000-00-00'),
-(80, 1, 27, 'Amarelo', '0000-00-00'),
-(81, 1, 27, 'Amarelo', '0000-00-00'),
-(82, 1, 26, 'Lula 2022', '0000-00-00'),
-(83, 1, 18, 'roxo', '0000-00-00'),
-(84, 1, 21, 'pão', '0000-00-00'),
-(85, 1, 26, 'Pindamoiangaba', '0000-00-00'),
-(86, 1, 25, 'Abacaxi', '0000-00-00'),
-(87, 1, 25, 'Banana', '0000-00-00'),
-(88, 1, 25, 'Banana', '0000-00-00'),
-(89, 1, 25, 'Oie', '0000-00-00'),
-(90, 1, 25, 'Tchau', '0000-00-00'),
-(91, 1, 25, ' ', '0000-00-00'),
-(92, 1, 25, ' ', '0000-00-00'),
-(93, 1, 25, 'Baita textoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', '0000-00-00'),
-(94, 1, 25, ' ', '0000-00-00'),
-(95, 1, 25, 'Texto teste', '0000-00-00'),
-(96, 1, 25, 'Texto teste', '0000-00-00'),
-(97, 1, 23, 'Agora', '0000-00-00'),
-(98, 1, 23, 'Depois', '0000-00-00'),
-(99, 1, 23, 'Depois de novo', '0000-00-00'),
-(100, 1, 23, 'Depois de novo', '0000-00-00'),
-(101, 1, 30, 'Oi', '0000-00-00'),
-(102, 1, 30, 'dois', '0000-00-00'),
-(103, 1, 30, 'tres', '0000-00-00'),
-(104, 1, 30, 'Quatro', '0000-00-00'),
-(105, 1, 30, 'Cinco', '0000-00-00'),
-(106, 1, 30, 'Seis', '0000-00-00'),
-(107, 1, 30, ' ', '0000-00-00'),
-(108, 1, 27, 'verse', '0000-00-00'),
-(109, 1, 27, ' ', '0000-00-00'),
-(110, 1, 26, 'Pipoca', '0000-00-00'),
-(111, 1, 26, 'Pipoca', '0000-00-00'),
-(112, 1, 26, 'Oie', '0000-00-00'),
-(113, 1, 26, ' ', '0000-00-00'),
-(114, 1, 26, 'eee', '0000-00-00'),
-(115, 1, 31, 'rebelde', '0000-00-00'),
-(116, 1, 23, '❤️', '0000-00-00'),
-(117, 1, 17, 'teste tesete', '0000-00-00');
+INSERT INTO `comentarios` (`id`, `comentario`, `created_at`, `updated_at`) VALUES
+(1, 'Que massa!!', NULL, '2022-11-29 03:00:55'),
+(2, 'Css3 é muito legal mesmo!', NULL, NULL),
+(3, 'Html é uma lingaguem de estilização!', NULL, NULL),
+(4, 'Php é mó legal', NULL, NULL),
+(5, 'ux é ruin', NULL, NULL),
+(7, 'meu comentario no meu post.', NULL, NULL),
+(8, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', NULL, '2022-11-29 03:02:21'),
+(9, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', '2022-11-29 02:59:22', '2022-11-29 02:59:56'),
+(11, 'meu comentario no meu post.', NULL, NULL),
+(12, 'Bacana seu post!', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -498,33 +391,31 @@ CREATE TABLE `migrations` (
 --
 
 CREATE TABLE `posts` (
-  `id_posts` int(255) NOT NULL,
-  `id_usuario` varchar(255) NOT NULL,
+  `id` int(5) UNSIGNED NOT NULL,
   `assunto` varchar(255) NOT NULL,
-  `data_post` varchar(20) DEFAULT NULL,
   `post` text DEFAULT NULL,
-  `imagem_post` varchar(200) DEFAULT NULL,
-  `curtidas` int(11) DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `posts`
 --
 
-INSERT INTO `posts` (`id_posts`, `id_usuario`, `assunto`, `data_post`, `post`, `imagem_post`, `curtidas`) VALUES
-(18, '3', 'Estilizando LI - parte 2', '13/08/2021 04:14', '  A política de execução não é um sistema de segurança que restringe as ações do usuário. Por exemplo, os usuários podem ignorar facilmente uma política digitando o conteúdo do script na linha de comando quando não puderem executar um script. Em vez disso, a política de execução ajuda os usuários a definir regras básicas e impede que eles as violem involuntariamente.  ', NULL, NULL),
-(20, '3', 'Estilizando LI - parte 3', '13/08/2021 07:03', 'O elemento HTML (ou a Lista dos Itens de um elemento HTML) é usado para representar um item que faz parte de uma lista. Este item deve estar contido em um elemento pai: uma lista ordenada, uma lista desordenada (), ou um menu (en-US)e representa uma única entidade dessa lista. Em menus e listas desordenadas a relação de itens é exibida, normalmente, usando pontos de marcação (as bolinhas).', NULL, NULL),
-(21, '6', 'CSS-Grid', '16/08/2021 11:11', 'CSS Grid Layout introduz um sistema bi-dimensional de grid (literalmente \"grades\") para CSS. Grids podem ser usados para o design de layouts de grandes seções de uma webpage, assim como de pequenos elementos de interface. Esse artigo apresenta o CSS Grid Layout e a terminologia que é parte da especificação  CSS Grid Layout Level 1. As funcionalidades demonstradas neste resumo serão posteriormente explicadas em maiores detalhes nas demais seções desse guia.', NULL, NULL),
-(22, '1', 'Html', '24/08/2021 01:54', ' HTML abreviação para a expressão inglesa HyperText Markup Language, que significa: \"Linguagem de Marcação de Hipertexto\" é uma linguagem de marcação utilizada na construção de páginas na Web. Documentos HTML podem ser interpretados por navegadores. A tecnologia é fruto da junção entre os padrões HyTime e SGML. ', 'computer-g6b51f598e_1920.jpg.jpg', 1),
-(23, '3', 'JavaScript', '19/08/2022 03:24', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1555172.jpg.jpg', 2),
-(24, '3', 'Banco de dados avaçados - sem imagem', '19/08/2022 03:27', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '20200924020927.jpg.jpg', 1),
-(25, '16', 'teste post com foto', '19/08/2022 03:38', 'com foto', 'organizze.jpeg.jpeg', 1),
-(26, '16', 'php', '19/08/2022 03:42', 'Oie gente!\r\n\r\n\r\nGlossário\r\nago 22, 2022\r\n\r\nCarlos E.\r\n\r\n8min de leitura\r\n\r\nO Que é PHP? Guia Básico de Programação PHP\r\nO Que é PHP? Guia Básico de Programação PHP\r\nNuma explicação de poucas palavras, PHP é uma linguagem de programação utilizada por programadores e desenvolvedores para construir sites dinâmicos, extensões de integração de aplicações e agilizar no desenvolvimento de um sistema.\r\n\r\nEssa linguagem é mundialmente conhecida e uma das mais utilizadas pela facilidade em aprendê-la, manuseá-la, além de ser compatível com quase todos os sistemas operacionais que existem – o que torna seu custo menor. Neste artigo nós vamos mostrar a importância dessa sigla, além da estrutura e vantagens dessa linguagem.', '404076-thumb-serp-1200x675.jpg.jpg', 2),
-(27, '3', 'html', '29/08/2022 03:46', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 3),
-(29, '1', 'html', '28/09/2022 03:58', 'Teste publicação dentro do modal!', '20200924020927.jpg.jpg', NULL),
-(30, '5', 'Php', '29/09/2022 01:42', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n\r\nWhere does it come from?\r\nContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\r\n\r\nWhere can I get some?\r\nThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\r\n\r\n5\r\n	paragraphs\r\n	words\r\n	bytes\r\n	lists\r\n	Start with \'Lorem\r\nipsum dolor sit amet...\'\r\n', NULL, NULL),
-(31, '17', 'Sql', '29/09/2022 01:53', 'Why do we use it?\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, NULL),
-(55, '19', 'html', '21/11/2022 08:27', 'teste', 'Gurias de TSI (4).png.png', NULL);
+INSERT INTO `posts` (`id`, `assunto`, `post`, `updated_at`, `created_at`) VALUES
+(18, 'Estilizando LI - parte 2', '  A política de execução não é um sistema de segurança que restringe as ações do usuário. Por exemplo, os usuários podem ignorar facilmente uma política digitando o conteúdo do script na linha de comando quando não puderem executar um script. Em vez disso, a política de execução ajuda os usuários a definir regras básicas e impede que eles as violem involuntariamente.  ', NULL, NULL),
+(19, 'Google optmize', NULL, '2022-11-29 02:19:56', '2022-11-29 02:19:56'),
+(20, 'Estilizando LI - parte 3', 'O elemento HTML (ou a Lista dos Itens de um elemento HTML) é usado para representar um item que faz parte de uma lista. Este item deve estar contido em um elemento pai: uma lista ordenada, uma lista desordenada (), ou um menu (en-US)e representa uma única entidade dessa lista. Em menus e listas desordenadas a relação de itens é exibida, normalmente, usando pontos de marcação (as bolinhas).', NULL, NULL),
+(21, 'CSS-Grid', 'CSS Grid Layout introduz um sistema bi-dimensional de grid (literalmente \"grades\") para CSS. Grids podem ser usados para o design de layouts de grandes seções de uma webpage, assim como de pequenos elementos de interface. Esse artigo apresenta o CSS Grid Layout e a terminologia que é parte da especificação  CSS Grid Layout Level 1. As funcionalidades demonstradas neste resumo serão posteriormente explicadas em maiores detalhes nas demais seções desse guia.', NULL, NULL),
+(22, 'Html', ' HTML abreviação para a expressão inglesa HyperText Markup Language, que significa: \"Linguagem de Marcação de Hipertexto\" é uma linguagem de marcação utilizada na construção de páginas na Web. Documentos HTML podem ser interpretados por navegadores. A tecnologia é fruto da junção entre os padrões HyTime e SGML. ', NULL, NULL),
+(23, 'JavaScript', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
+(24, 'Banco de dados avaçados - sem imagem', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
+(25, 'teste post com foto', 'com foto', NULL, NULL),
+(26, 'php', 'Oie gente!\r\n\r\n\r\nGlossário\r\nago 22, 2022\r\n\r\nCarlos E.\r\n\r\n8min de leitura\r\n\r\nO Que é PHP? Guia Básico de Programação PHP\r\nO Que é PHP? Guia Básico de Programação PHP\r\nNuma explicação de poucas palavras, PHP é uma linguagem de programação utilizada por programadores e desenvolvedores para construir sites dinâmicos, extensões de integração de aplicações e agilizar no desenvolvimento de um sistema.\r\n\r\nEssa linguagem é mundialmente conhecida e uma das mais utilizadas pela facilidade em aprendê-la, manuseá-la, além de ser compatível com quase todos os sistemas operacionais que existem – o que torna seu custo menor. Neste artigo nós vamos mostrar a importância dessa sigla, além da estrutura e vantagens dessa linguagem.', NULL, NULL),
+(27, 'html', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
+(29, 'html', 'Teste publicação dentro do modal!', NULL, NULL),
+(30, 'Php', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n\r\nWhere does it come from?\r\nContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\r\n\r\nWhere can I get some?\r\nThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\r\n\r\n5\r\n	paragraphs\r\n	words\r\n	bytes\r\n	lists\r\n	Start with \'Lorem\r\nipsum dolor sit amet...\'\r\n', NULL, NULL),
+(31, 'Sql', 'Why do we use it?\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -533,34 +424,33 @@ INSERT INTO `posts` (`id_posts`, `id_usuario`, `assunto`, `data_post`, `post`, `
 --
 
 CREATE TABLE `usuarios` (
-  `id_usuarios` int(255) NOT NULL,
+  `id` int(5) UNSIGNED NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `imagem` varchar(255) NOT NULL,
   `nome` varchar(200) DEFAULT NULL,
   `profissao` varchar(200) DEFAULT NULL,
   `competencias` varchar(200) DEFAULT NULL,
-  `user_online` tinyint(1) DEFAULT NULL,
-  `banco_talentos` tinyint(4) DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuarios`, `email`, `senha`, `imagem`, `nome`, `profissao`, `competencias`, `user_online`, `banco_talentos`) VALUES
-(1, 'carolini.tsi@gmail.com', 'MTIzNA==', 'e2590aae1c2066a177d53056722d43ca.jpg.jpg', 'Carolini', 'Desenvolvedora Frontend', 'Html - Css - Javascript', 0, NULL),
-(3, 'lizy@gmail.com', 'MTIzNA==', '174600860_128235682565572_1027689003720731259_n.jpg.jpg', 'Lizy', 'Desenvolvedora Backend', 'Php Node.js', 0, NULL),
-(4, 'tais.olliveira333@gmail.com', 'MzMz', 'FOTINHO.jpeg.jpeg', NULL, NULL, NULL, 0, NULL),
-(5, 'teste@gmail.com', 'MTIzNA==', '103441570_1977093405789244_7841247353563130695_o.jpg.jpg', 'Carolini Teste ', 'Desenvolvedora Front-end', 'Html - CSS - Javascript - Sass - Git', 0, NULL),
-(16, 'ana.julia@hotmail.com', 'MTIzNA==', 'woman-g6b1fcd141_1920.jpg.jpg', 'Ana Julia', 'Desenvolvedora Backend', 'Php Node.js', 1, NULL),
-(17, 'caroline.oliveira1800@gmail.com', 'MTIzNA==', 'girl-g5a82c1e62_1920.jpg.jpg', 'Caroline Oliveira', 'Desenvolvedora Frontend', 'Html - Css - Javascript', 0, NULL),
-(18, 'caroline.oliveira1800@gmail.com', 'MTIzNA==', 'girl-g5a82c1e62_1920.jpg.jpg', 'Caroline Oliveira', 'Desenvolvedora Frontend', 'Html - Css - Javascript', NULL, NULL),
-(19, 'rihanna@gmail.com', 'MTIzNA==', 'download.jpg.jpg', 'Rihanna', 'Desenvolvedora Backend', 'Php Node.js', 0, NULL),
-(20, 'rihanna@gmail.com', 'MTIzNA==', 'download.jpg.jpg', 'Rihanna', 'Desenvolvedora Backend', 'Php Node.js', NULL, NULL),
-(21, 'caroline.oliveira@hotmail.com', 'MTIzNA==', 'download.jpg.jpg', 'Usuaria Teste', 'Front-end', 'Html - CSS - Javascript - Sass', NULL, NULL),
-(22, 'banco@gmail.com', 'MTIzNA==', 'WhatsApp Image 2022-11-21 at 20.46.28.jpeg.jpeg', 'banco talentos', 'Desenvolvedora Backend', 'Php Node.js', 0, 0),
-(23, 'banco@gmail.com', 'MTIzNA==', 'WhatsApp Image 2022-11-21 at 20.46.28.jpeg.jpeg', 'banco talentos 2', 'Desenvolvedora Backend', 'Php Node.js', NULL, NULL);
+INSERT INTO `usuarios` (`id`, `email`, `senha`, `nome`, `profissao`, `competencias`, `created_at`, `updated_at`) VALUES
+(1, 'carolini.tsi@gmail.com', 'MTIzNA==', 'Carolini', 'Desenvolvedora Frontend', NULL, NULL, '2022-11-29 01:40:07'),
+(3, 'lizy@gmail.com', 'MTIzNA==', 'Lizy', 'Desenvolvedora Backend', 'Php Node.js', NULL, NULL),
+(4, 'tais.olliveira333@gmail.com', 'MzMz', 'Tais', 'Front-end', 'Html - CSS - Javascript - Sass', NULL, '2022-11-29 01:59:06'),
+(5, 'teste@gmail.com', 'MTIzNA==', 'Carolini Teste ', 'Desenvolvedora Front-end', 'Html - CSS - Javascript - Sass - Git', NULL, NULL),
+(16, 'ana.julia@hotmail.com', 'MTIzNA==', 'Ana Julia', 'Desenvolvedora Backend', 'Php Node.js', NULL, NULL),
+(17, 'caroline.oliveira1800@gmail.com', 'MTIzNA==', 'Caroline Oliveira', 'Desenvolvedora Frontend', 'Html - Css - Javascript', NULL, NULL),
+(18, 'caroline.oliveira1800@gmail.com', 'MTIzNA==', 'Caroline Oliveira', 'Desenvolvedora Frontend', 'Html - Css - Javascript', NULL, NULL),
+(19, 'rihanna@gmail.com', 'MTIzNA==', 'Rihanna', 'Desenvolvedora Backend', 'Php Node.js', NULL, NULL),
+(20, 'rihanna@gmail.com', 'MTIzNA==', 'Rihanna', 'Desenvolvedora Backend', 'Php Node.js', NULL, NULL),
+(21, 'caroline.oliveira@hotmail.com', 'MTIzNA==', 'Usuaria Teste', 'Front-end', 'Html - CSS - Javascript - Sass', NULL, NULL),
+(22, 'banco@gmail.com', 'MTIzNA==', 'banco talentos', 'Desenvolvedora Backend', 'Php Node.js', NULL, NULL),
+(23, 'banco@gmail.com', 'MTIzNA==', 'banco talentos 2', 'Desenvolvedora Backend', 'Php Node.js', NULL, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -576,7 +466,7 @@ ALTER TABLE `chat`
 -- Índices para tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id_comentario`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `likes`
@@ -594,13 +484,13 @@ ALTER TABLE `migrations`
 -- Índices para tabela `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id_posts`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuarios`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -613,12 +503,6 @@ ALTER TABLE `chat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
--- AUTO_INCREMENT de tabela `comentarios`
---
-ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
-
---
 -- AUTO_INCREMENT de tabela `likes`
 --
 ALTER TABLE `likes`
@@ -629,18 +513,6 @@ ALTER TABLE `likes`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `posts`
---
-ALTER TABLE `posts`
-  MODIFY `id_posts` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
-
---
--- AUTO_INCREMENT de tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id_usuarios` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
