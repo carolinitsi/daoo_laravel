@@ -17,7 +17,7 @@
             <li>Importado: {{ $produto->importado ? 'Sim' : 'Não' }}</li>
         </ul>
     @else
-        <p>Produtos não encontrados! </p>
+        <p>teste! </p>
     @endif
     <a href="/produtos">&#9664;Voltar</a>
 </body>

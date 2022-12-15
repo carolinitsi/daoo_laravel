@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,8 +14,8 @@
         <p>Email:{{ $usuario->email }}</p>
         <p>Competencias: {{ $usuario->competencias }}</p>
     @else
-        <p>Produtos não encontrados! </p>
+        <p>Usuarios não encontrados! </p>
     @endif
     <a href="/usuarios">&#9664;Voltar</a>
 </body>
-</html>
+</html> -->

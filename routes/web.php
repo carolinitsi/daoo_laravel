@@ -1,70 +1,53 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeControlles;
-use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ComentarioController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\ProfileController;
+use App\Models\Usuario;
+use App\Models\User;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard',
+        ['usuarios'=>Usuario::all(),
+         'users'=>User::all()
+        ]);
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/ola',[HomeControlles::class,'index']);
-Route::get('/produto',[ProdutoController::class,'index']);
-Route::get('/produto/{id}',[ProdutoController::class,'show']);
+Route::get('/dashboard/usuario/{id}', function ($id) {
+    return view('pages.usuario.single-dash',['usuario'=>Usuario::find($id) ]);
+})->middleware(['auth', 'verified'])->name('usuario.single-dash');
 
-//-USUARIO
-//mostrar
-Route::get('/usuarios',[UsuarioController::class,'index']);
-Route::get('/usuario/{id}',[UsuarioController::class,'show']);
-//postar
-Route::get('/usuario',[UsuarioController::class,'create']);
-Route::post('/usuario',[UsuarioController::class,'store']);
-//editar
-Route::get('/usuario/{id}/edit',[UsuarioController::class,'edit']) ->name('edit');
-Route::post('/usuario/{id}/update',[UsuarioController::class,'update']) ->name('update');
-//deletar
-Route::get('/usuario/{id}/delete',[UsuarioController::class,'delete']) ->name('delete');
-Route::post('/usuario/{id}/delete',[UsuarioController::class,'remove']) ->name('remove');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-//-POST
-//mostrar
-// Route::get('/posts',[PostController::class,'index']);
-// Route::get('/post/{id}',[PostController::class,'show']);
-// //postar
-// Route::get('/post',[PostController::class,'create']);
-// Route::post('/post',[PostController::class,'store']);
-// //editar
-// Route::get('/post/{id}/edit',[PostController::class,'edit']) ->name('edit');
-// Route::post('/post/{id}/update',[PostController::class,'update']) ->name('update');
-// //deletar
-// Route::get('/post/{id}/delete',[PostController::class,'delete']) ->name('delete');
-// Route::post('/post/{id}/delete',[PostController::class,'remove']) ->name('remove');
+require __DIR__.'/auth.php';
 
-//-COMENTARIO
-//mostrar
-// Route::get('/comentarios',[ComentarioController::class,'index']);
-// Route::get('/comentario/{id}',[ComentarioController::class,'show']);
-// //postar
-// Route::get('/comentario',[ComentarioController::class,'create']);
-// Route::post('/comentario',[ComentarioController::class,'store']);
-// //editar
-// Route::get('/comentario/{id}/edit',[ComentarioController::class,'edit']) ->name('edit');
-// Route::post('/comentario/{id}/update',[ComentarioController::class,'update']) ->name('update');
-// //deletar
-// Route::get('/comentario/{id}/delete',[ComentarioController::class,'delete']) ->name('delete');
-// Route::post('/comentario/{id}/delete',[ComentarioController::class,'remove']) ->name('remove');
+Route::controller(UsuarioController::class)
+    ->group(function () {
+
+        Route::prefix('/usuarios')->group(function () {
+            Route::get('/', 'index')->name('usuarios');
+            Route::get('/{id}', 'show');
+        });
+
+        Route::prefix('/usuario')
+            ->middleware('auth')
+            ->group(function () {
+                Route::get('/', 'create');
+                Route::post('/', 'store');
+
+                Route::get('/{id}/edit', 'edit')->name('edit');
+                Route::post('/{id}/update', 'update')->name('update');
+
+                Route::get('/{id}/delete', 'delete')->name('delete');
+                Route::post('/{id}/remove', 'remove')->name('remove');
+            });
+    });
+?>

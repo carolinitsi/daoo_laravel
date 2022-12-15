@@ -32,7 +32,7 @@
         </tbody>
     </table>
     @else
-    <p>Produtos não encontrados! </p>
+    <p>Produtos não encontrados!! </p>
     @endif
 </body>
 </html>
