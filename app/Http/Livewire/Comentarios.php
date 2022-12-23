@@ -45,13 +45,14 @@ class Comentarios extends Component
         $comentario = [
             "comentario" => $this->comentario,
         ];
-        dd($comentario);
+        // dd($comentario);
         try {
             Comentario::create($comentario);
             $this->clear();
             $this->orderAsc = false;
             $this->orderBy();
         } catch (Exception $e) {
+            dd($e->getMessage());
             dd('Erro ao inserir');
             dd($e);
         }

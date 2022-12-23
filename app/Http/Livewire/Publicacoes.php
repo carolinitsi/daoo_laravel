@@ -27,17 +27,17 @@ class Publicacoes extends Component
         $this->publicacoes = Post::all();
     }
 
-    // public function orderBy($column = 'id')
-    // {
-    //     $this->orderColumn = $column;
-    //     $this-> = Post::orderBy(
-    //         $this->orderColumn,
-    //         $this->orderAsc ? 'asc' : 'desc'
-    //     )->get();
-    //     $this->orderAsc = !$this->orderAsc;
-    //     //debugando variavel na saida do servidor
-    //     Log::channel('stderr')->info($this->orderAsc?'asc':'desc');
-    // }
+    public function orderBy($column = 'id')
+    {
+        $this->orderColumn = $column;
+        $this-> comentarios = Post::orderBy(
+            $this->orderColumn,
+            $this->orderAsc ? 'asc' : 'desc'
+        )->get();
+        $this->orderAsc = !$this->orderAsc;
+        //debugando variavel na saida do servidor
+        Log::channel('stderr')->info($this->orderAsc?'asc':'desc');
+    }
 
     public function orderByName()
     {
@@ -63,6 +63,7 @@ class Publicacoes extends Component
             $this->orderAsc = false;
             $this->orderBy();
         } catch (Exception $e) {
+            dd($e->getMessage());
             dd('Erro ao inserir');
             dd($e);
         }
