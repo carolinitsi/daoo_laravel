@@ -10,30 +10,36 @@ class ComentarioController extends Controller
     public function index(){
         $modelComentario = new Comentario();
         $comentario = $modelComentario->all();
-        return view('comentarios', ['comentarios' => $comentario]);
+        return view('pages.comentario.index',
+        ['comentarios' => $comentario]);
     }
 
     public function show($id){
-        $modelComentario = new Comentario();
-        $comentarios = $modelComentario->find($id);
-        return view('comentario', ['comentario' => $comentarios]);
+
+        return view(
+            'pages.comentario.single',
+            ['comentario' => Comentario::find($id)]
+        );
     }
 
     
     public function create(){
-        return view('comentario_create');
+
+        return view('pages.comentario.create');
     }
 
     public function store(Request $request)
     {
+
         $newComentario = $request->all();
         if (Comentario::create($newComentario))
-            return redirect('/comentario');
+            return redirect('/dashboard');
         else dd("Error ao criar comentario!!");
+
     }
 
     public function edit($id){
-        return view('comentario_edit',['comentario' => Comentario::find($id)]);
+        return view('pages.comentario.edit', ['comentario' => Comentario::find($id)]);
     }
 
     public function update(Request $request, $id)
@@ -41,17 +47,19 @@ class ComentarioController extends Controller
         $updatedComentario = $request->all();
         if (!Comentario::find($id)->update($updatedComentario))
             dd("Erro ao atualizar comentário $id!");
-        return redirect('/comentarios');
+        return redirect('/dashboard');
     }
 
     public function delete($id){
-        return view('/comentario_delete',['comentario' => Comentario::find($id)]);
-    }
+        return view(
+            'pages.comenario.delete',
+            ['comenario' => Comentario::find($id)]
+        );    }
 
     public function remove(Request $request, $id){
         if($request->confirmar == 'Deletar')
             if(!Comentario::destroy($id))
                 dd("Erro ao deletar comentario $id.");
-        return redirect('/comentarios');
+        return redirect('/dashboard');
     }
 }

@@ -9,26 +9,28 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
+
         $modelPost = new Post();
-        $post = $modelPost->all();
-        return view('posts', ['posts' => $post]);
+        $posts = $modelPost->all();
+        return view('pages.publicacao.index',
+        ['publicacoes' => $posts]);
     }
 
     public function show($id){
         $modelPost = new Post();
-        $posts = $modelPost->find($id);
-        return view('post', ['post' => $posts]);
+        $publicacoes = $modelPost->find($id);
+        return view('publicacao', ['publicacao' => $publicacoes]);
     }
 
     public function create(){
-        return view('post_create');
+        return view('pages.publicacao.create');
     }
 
     public function store(Request $request)
     {
         $newPost = $request->all();
         if (Post::create($newPost))
-            return redirect('/post');
+            return redirect('/dashboard');
         else dd("Error ao criar publicação!!");
     }
 
@@ -41,7 +43,7 @@ class PostController extends Controller
         $updatedPost = $request->all();
         if (!Post::find($id)->update($updatedPost))
             dd("Erro ao atualizar publicação $id!");
-        return redirect('/posts');
+        return redirect('/publicacoes');
     }
 
     public function delete($id){
@@ -52,6 +54,6 @@ class PostController extends Controller
         if($request->confirmar == 'Deletar')
             if(!Post::destroy($id))
                 dd("Erro ao deletar publicação $id.");
-        return redirect('/posts');
+        return redirect('/publicacoes');
     }
 }
