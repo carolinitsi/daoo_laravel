@@ -17,4 +17,24 @@ class Post extends Model
         "post",
         "id_user"
     ];
+
+    public function usuario(){
+        return $this->belongsTo(Usuario::class);
+    }
+
+    // public function regiao(){
+    //     return $this->belongsToThrough(
+    //         Regiao::class,
+    //         [
+    //             Estado::class,
+    //             Fornecedor::class
+    //         ],
+    //         null,
+    //         '',
+    //         [
+    //             Regiao::class=>'regiao_id',
+    //             Fornecedor::class=>'fornecedor_id'
+    //         ]
+    //     );
+    // }
 }

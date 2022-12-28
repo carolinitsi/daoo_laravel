@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
             'usuarios' => Usuario::all(),
             'users' => User::all(),
             'publicacoes' => Post::all(),
-            'comentarios' => Comentarios::all(),
+            'comentarios' => Comentario::all(),
         ]
     );
 })->middleware(['auth', 'verified'])->name('dashboard');
