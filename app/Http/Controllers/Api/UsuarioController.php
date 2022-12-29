@@ -14,8 +14,8 @@ class UsuarioController extends Controller
         return response()->json(Usuario::all());
     }
 
-    public function show(Usuario $usuario){
-            return response()->json(['usuario' => $usuario]);
+    public function show($id){
+        return response()->json(Usuario::findOrFail($id));
     }
 
     public function store(Request $request){
@@ -36,18 +36,19 @@ class UsuarioController extends Controller
         }
     }
 
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, int $id)
     {
         try{
             $data = $request->all();
-            $usuario = update($data);
+            $updUser = Usuario::findOrFail($id);
+            $updUser->update($data);
             return response()->json([
                 'message'=>'Usuario atualizado com sucesso!',
-                'post'=>$usuario
+                'post'=>$updUser
             ]);
         }catch(Exception $error){
             $message = [
-                "Erro:"=>"Erro ao atualizar novo usuario",
+                "Erro:"=>"Erro ao atualizar novo post",
                 "Exception:"=>$error->getMessage()
             ];
             $status = 401;
@@ -55,23 +56,23 @@ class UsuarioController extends Controller
         }
     }
 
-    public function destroy(Usuario $usuario)
+    public function remove(int $id)
     {
+        $status = 404;
         try {
-            if (!$usuario->delete())
-                throw new \Exception("Erro não detectado, tente mais tarde!");
-
+            if (!Usuario::findOrFail($id)->delete()) {
+                $status = 500;
+                throw new Exception("Erro ao deletar usuario de id:$id");
+            }
             return response()->json([
-                "msg" => "Usuario excluido.",
-                "usuario" => $usuario
+                'message' => "Usuário id:$id removido com sucesso!"
             ]);
-        } catch (\Exception $error) {
-            $responseError = [
-                'Erro' => "Erro ao deletar o usuario!",
-                'Exception' => $error->getMessage()
+        } catch (Exception $error) {
+            $message = [
+                "Erro:" => "Erro ao remover post",
+                "Exception:" => $error->getMessage()
             ];
-            $statusHttp = 404;
-            return response()->json($responseError, $statusHttp);
+            return response()->json($message, $status);
         }
     }
 
