@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
-
-
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,35 +10,49 @@ class PostController extends Controller
     public function index(){
 
         $modelPost = new Post();
-        $posts = $modelPost->all();
         return view('pages.publicacao.index',
-        ['publicacoes' => $posts]);
+        ['publicacoes' => $modelPost->paginate(15)]);
     }
 
     public function show($id){
-        $modelPost = new Post();
-        $publicacoes = $modelPost->find($id);
-        return view('publicacao', ['publicacao' => $publicacoes]);
+        return view(
+            'pages.publicacao.single',
+            ['publicacao' => Post::find($id)]
+        );
     }
 
     public function create(){
-        return view('pages.publicacao.create');
+        return view('pages.publicacao.create',
+            ['publicacao'=>Post::all()]
+        );
     }
 
     public function store(Request $request)
     {
-        $newPost = $request->all();
-        if (Post::create($newPost))
-            return redirect('/dashboard');
-        else dd("Error ao criar publicação!!");
+        if ($request->has('confirmar')){
+            $newPost = $request->all();
+            if (!Post::create($newPost))
+                dd("Error ao criar publicação!!");
+        }
+        return redirect('/dashboard');
     }
 
     public function edit($id){
-        return view('post_edit',['post' => Post::find($id)]);
+        return view('pages.pblicacao.edit', [
+            'publicacao' => Post::find($id),
+            'usuarios'=>Usuario::all()
+        ]);
     }
 
     public function update(Request $request, $id)
     {
+        if($request->has('confirmar')){
+            $updatedPost = $request->all();
+            if (!Post::find($id)->update($updatedPost))
+                dd("Erro ao atualizar publicação $id!");
+        }
+        return redirect('/dashboard');
+
         $updatedPost = $request->all();
         if (!Post::find($id)->update($updatedPost))
             dd("Erro ao atualizar publicação $id!");
@@ -47,13 +60,16 @@ class PostController extends Controller
     }
 
     public function delete($id){
-        return view('/post_delete',['post' => Post::find($id)]);
+        return view(
+            'pages.publicacao.delete',
+            ['publicacao' => Post::find($id)->load('usuario')]
+        );
     }
 
     public function remove(Request $request, $id){
-        if($request->confirmar == 'Deletar')
-            if(!Post::destroy($id))
-                dd("Erro ao deletar publicação $id.");
-        return redirect('/publicacoes');
+        if ($request->has('confirmar'))
+            if (!Post::destroy($id))
+                dd("Error ao deletar publicação $id.");
+        return redirect('/dashboard');
     }
 }

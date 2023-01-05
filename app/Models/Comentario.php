@@ -14,4 +14,8 @@ class Comentario extends Model
     protected $fillable = [
         "comentario",
     ];
+
+    public function post(){
+        return $this->belongsTo(Post::class);
+    }
 }

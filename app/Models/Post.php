@@ -22,19 +22,8 @@ class Post extends Model
         return $this->belongsTo(Usuario::class);
     }
 
-    // public function regiao(){
-    //     return $this->belongsToThrough(
-    //         Regiao::class,
-    //         [
-    //             Estado::class,
-    //             Fornecedor::class
-    //         ],
-    //         null,
-    //         '',
-    //         [
-    //             Regiao::class=>'regiao_id',
-    //             Fornecedor::class=>'fornecedor_id'
-    //         ]
-    //     );
-    // }
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
+    }
+
 }

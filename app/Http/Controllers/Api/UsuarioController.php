@@ -10,69 +10,80 @@ use \Exception;
 
 class UsuarioController extends Controller
 {
-    public function index(){
-        return response()->json(Usuario::all());
-    }
 
-    public function show($id){
-        return response()->json(Usuario::findOrFail($id));
+    public function index(Request $request)
+    {
+        $perPage = $request->query('per_page');
+        $paginateUsuario = Usuario::paginate($perPage);
+        $paginateUsuario->appends([
+            'per_page'=>$perPage
+        ]);
+        return response()->json($paginateUsuario);
     }
 
     public function store(Request $request){
-        try{
+        $statusHttp=500;
+        try {
+            if (!$request->user()->tokenCan('is-admin')) {
+                $statusHttp = 403;
+                throw new \Exception("Não possui permissão!!!");
+            }
             $newUsuario = $request->all();
             $storedUsuario = Usuario::create($newUsuario);
             return response()->json([
-                'message'=>'Usuario cadastrado com sucesso!',
-                'usuario'=>$storedUsuario
+                'message' => 'Usuario cadastrado com sucesso!',
+                'Usuario' => $storedUsuario
             ]);
-        }catch(\Exception $error){
+        } catch (\Exception $error) {
             $message = [
-                "Erro:"=>"Erro ao cadastrar novo usuario",
-                "Exception:"=>$error->getMessage()
-            ];
-            $status = 401;//bad request
-            return response()->json($message,$status);
-        }
-    }
-
-    public function update(Request $request, int $id)
-    {
-        try{
-            $data = $request->all();
-            $updUser = Usuario::findOrFail($id);
-            $updUser->update($data);
-            return response()->json([
-                'message'=>'Usuario atualizado com sucesso!',
-                'post'=>$updUser
-            ]);
-        }catch(Exception $error){
-            $message = [
-                "Erro:"=>"Erro ao atualizar novo post",
-                "Exception:"=>$error->getMessage()
-            ];
-            $status = 401;
-            return response()->json($message,$status);
-        }
-    }
-
-    public function remove(int $id)
-    {
-        $status = 404;
-        try {
-            if (!Usuario::findOrFail($id)->delete()) {
-                $status = 500;
-                throw new Exception("Erro ao deletar usuario de id:$id");
-            }
-            return response()->json([
-                'message' => "Usuário id:$id removido com sucesso!"
-            ]);
-        } catch (Exception $error) {
-            $message = [
-                "Erro:" => "Erro ao remover post",
+                "Erro:" => "Erro ao cadastrar novo Fornecedor",
                 "Exception:" => $error->getMessage()
             ];
-            return response()->json($message, $status);
+            return response()->json($message, $statusHttp);
+        }
+    }
+
+    public function show(Usuario $usuario)
+    {
+        return response()->json(['usuario' => $usuario]);
+    }
+
+    public function update(Request $request, Usuario $usuario)
+    {
+        $statusHttp=500;
+        try {
+            $data = $request->all();
+            $usuario->update($data);
+            return response()->json([
+                'message' => 'Usuario atualizado com sucesso!',
+                'Usuario' => $usuario
+            ]);
+        } catch (\Exception $error) {
+            $message = [
+                "Erro:" => "Erro ao atualizar fornecedor",
+                "Exception:" => $error->getMessage()
+            ];
+            return response()->json($message, $statusHttp);
+        }
+    }
+
+    public function destroy(Usuario $usuario)
+    {
+        try {
+            if (!$usuario->delete())
+                throw new \Exception("Erro não detectado, tente mais tarde!");
+
+            return response()->json([
+                "msg" => "Usuario excluido.",
+                "usuario" => $usuario
+            ]);
+        } catch (\Exception $error) {
+            $responseError = [
+                'Erro' => "Erro ao deletar o usuario!",
+                'Exception' => $error->getMessage()
+            ];
+            $statusHttp = 404;
+            return response()->json($responseError, $statusHttp);
         }
     }
 

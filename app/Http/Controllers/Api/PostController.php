@@ -11,8 +11,13 @@ use \Exception;
 class PostController extends Controller
 {
 
-    public function index(){
-        return response()->json(Post::all());
+    public function index(Request $request){
+        $perPage = $request->query('per_page');
+        $paginatePosts = Post::paginate($perPage);
+        $paginatePosts->appends([
+            'per_page'=>$perPage
+        ]);
+        return response()->json($paginatePosts);  
     }
 
     public function show($id){
@@ -28,7 +33,7 @@ class PostController extends Controller
         }
     }
 
-    public function store(Request $request){
+    public function store(PostRequest $request){
         try{
             $newPost = $request->all();
             $storedPost = Post::create($newPost);

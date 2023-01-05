@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->text('assunto');
             $table->text('post');
-            $table -> timestamp();
-        });
+            $table->timestamps();
+            $table->foreignId('user_id')
+                    ->constrained()
+                    ->cascadeOnDelete();
+            });
     }
 
     /**

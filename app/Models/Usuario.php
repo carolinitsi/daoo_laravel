@@ -18,4 +18,10 @@ class Usuario extends Model
         "profissao",
         "competencias"
     ];
+
+
+    public function publicacoes()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
