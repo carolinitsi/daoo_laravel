@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ComentarioRequest;
 use App\Models\Comentario;
 use Illuminate\Http\Request;
 use \Exception;
@@ -28,22 +29,31 @@ class ComentarioController extends Controller
         }
     }
 
-    public function store(Request $request){
+    public function store(ComentarioRequest $request)
+    {
+        $status=500;
         try{
-            $newComentario = $request->all();
-            $storedComentario = Comentario::create($newComentario);
-            return response()->json([
-                'message'=>'Comentario realizado com sucesso!',
-                'post'=>$storedComentario
-            ]);
+           $newComentario = $request->post();
+           if(!$newComentario){
+            $status = 400;
+            throw new Exeption('Os dados devem ser enviados via POST!');
+           }
+           $response = [
+            'mensagem' => 'Comentário realizado com sucesso!',
+            'Comentario'=>Comentario::create($newComentario)
+           ];
+           $status = 200;
+
         }catch(Exception $error){
-            $message = [
-                "Erro:"=>"Erro ao fazer comentario",
-                "Exception:"=>$error->getMessage()
-            ];
-            $status = 401;//bad request
-            return response()->json($message,$status);
+            $status = isset($error->errorInfo)?500:$status;
+           $response = [
+            'error'=>isset($error->errorInfo)?
+            'Erro interno com o banco de dados!'
+            :$error->getMessage()
+           ];
         }
+        return response()->json($response,$status);
+
     }
 
     public function update(Request $request, int $id)
@@ -54,7 +64,7 @@ class ComentarioController extends Controller
             $updComentario->update($data);
             return response()->json([
                 'message'=>'Comentario atualizado com sucesso!',
-                'post'=>$updComentario
+                'Comentario'=>$updComentario
             ]);
         }catch(Exception $error){
             $message = [

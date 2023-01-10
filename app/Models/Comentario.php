@@ -13,9 +13,15 @@ class Comentario extends Model
 
     protected $fillable = [
         "comentario",
+        "post_id"
     ];
 
     public function post(){
         return $this->belongsTo(Post::class);
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
     }
 }

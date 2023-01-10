@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PublicacaoRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use \Exception;
@@ -33,7 +34,7 @@ class PostController extends Controller
         }
     }
 
-    public function store(PostRequest $request){
+    public function store(PublicacaoRequest $request){
         try{
             $newPost = $request->all();
             $storedPost = Post::create($newPost);
@@ -89,5 +90,13 @@ class PostController extends Controller
             ];
             return response()->json($message, $status);
         }
+    }
+
+    public function comentarios(Post $publi)
+    {
+        // dd($user);
+        return response()->json([
+            ['publicacao'=>$publi->load('comentarios')]
+        ]);
     }
 }

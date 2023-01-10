@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PublicacaoRequest extends FormRequest
+class ComentarioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,16 @@ class PublicacaoRequest extends FormRequest
     public function rules()
     {
         return [
-            'assunto'=> 'required | min:1 | string ',
-            'post'=> 'required | min:1 | string ',
+            'comentario'      => 'required | string | max:200',
+            'post_id'     => 'required | numeric',
         ];
     }
 
     public function messages()
     {
-        return [
-            'post'=>'Insira ao menos um autor na publicação!',
+        return[
+            'comentario.require'      => 'O comentario é obrigatório!!',
+            'post_id.require'          => 'O comentário deve possuir a id da publicação!',
         ];
     }
 }

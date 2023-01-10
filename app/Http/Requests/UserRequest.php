@@ -28,6 +28,8 @@ class UserRequest extends FormRequest
             'email'     => 'required | email | unique:users',
             'password'  => 'required | min:8',
             'is_admin'  =>  'nullable | boolean',
+            'competencias'      => 'string | max:50',
+            'profissao'      => 'string | max:50',
         ];
     }
 

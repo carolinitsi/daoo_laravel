@@ -8,8 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-use Illuminate\Database\Eloquent\Model;
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -22,9 +20,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'profissao',
-        'competencias',
         'password',
+        'competencias',
+        'profissao',
         'is_admin'
     ];
 
@@ -34,7 +32,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
         'remember_token',
     ];
 
@@ -47,12 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts(){
+    public function publicacoes()
+    {
         return $this->hasMany(Post::class);
     }
-
-    public function comentarios(){
-        return $this->hasManyThrough(Comentario::class, Post::class);
-    }
-
 }

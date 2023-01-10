@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PublicacaoRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,16 @@ class PublicacaoRequest extends FormRequest
     public function rules()
     {
         return [
-            'assunto'=> 'required | min:1 | string ',
-            'post'=> 'required | min:1 | string ',
+            'email'    => 'required | exists:users',
+            'password' => 'required',
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'post'=>'Insira ao menos um autor na publicação!',
+    public function messages(){
+        return[
+            'email.required'    => 'O email é obrigatório',
+            'email.exists'      => 'Usuário não cadastrado',
+            'password.required' => 'IPor favor, informe a senha!'
         ];
     }
 }
