@@ -12,6 +12,10 @@
                         <td>Comentario:</td>
                         <td><input wire:model='comentario' type="text" name="comentario" /></td>
                     </tr>
+                    <tr>
+                        <td>Id da publicação:</td>
+                        <td><input wire:model='post_id' type="text" name="post_id" /></td>
+                    </tr>
                 </table>
             </form>
             <div class='flex mt-4 justify-center gap-24 w-full'>

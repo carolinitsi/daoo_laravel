@@ -11,7 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('landing', ['usuarios' => Usuario::all()]);
+    return view('landing', ['publicacoes' => Post::all()]);
 })->name('landing');
 
 Route::get('/dashboard', function () {
@@ -63,11 +63,11 @@ Route::controller(UsuarioController::class)
                 Route::get('/', 'create');
                 Route::post('/', 'store');
 
-                Route::get('/{id}/edit', 'edit')->name('edit');
-                Route::post('/{id}/update', 'update')->name('update');
+                Route::get('/{id}/edit', 'edit')->name('usuario.edit');
+                Route::post('/{id}/update', 'update')->name('usuario.update');
 
-                Route::get('/{id}/delete', 'delete')->name('delete');
-                Route::post('/{id}/remove', 'remove')->name('remove');
+                Route::get('/{id}/delete', 'delete')->name('usuario.delete');
+                Route::post('/{id}/remove', 'remove')->name('usuario.remove');
             });
     });
 
@@ -85,11 +85,11 @@ Route::controller(UsuarioController::class)
                 Route::get('/', 'create');
                 Route::post('/', 'store');
 
-                Route::get('/{id}/edit', 'edit')->name('edit');
-                Route::post('/{id}/update', 'update')->name('update');
+                Route::get('/{id}/edit', 'edit')->name('publicacao.edit');
+                Route::post('/{id}/update', 'update')->name('publicacao.update');
 
-                Route::get('/{id}/delete', 'delete')->name('delete');
-                Route::post('/{id}/remove', 'remove')->name('remove');
+                Route::get('/{id}/delete', 'delete')->name('publicacao.delete');
+                Route::post('/{id}/remove', 'remove')->name('publicacao.remove');
             });
     });
 

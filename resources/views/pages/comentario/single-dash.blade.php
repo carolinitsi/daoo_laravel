@@ -16,8 +16,8 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ route('edit', $comentario->id) }}"><button>editar</button></a>
-        <a href="{{ route('delete', $comentario->id) }}"><button>deletar</button></a>
+        <a href="{{ route('comentario.edit', $comentario->id) }}"><button>editar</button></a>
+        <a href="{{ route('comentario.delete', $comentario->id) }}"><button>deletar</button></a>
     @else
         <p>Comentário não encontrado! </p>
     @endif

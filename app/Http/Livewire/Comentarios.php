@@ -12,6 +12,7 @@ class Comentarios extends Component
     public $comentarios;
     public $orderAsc = true;
     public $orderColumn = 'id';
+    public $post_id;
 
     public $comentario;
  
@@ -44,6 +45,7 @@ class Comentarios extends Component
     {
         $comentario = [
             "comentario" => $this->comentario,
+            "post_id"   => $this->post_id,
         ];
         // dd($comentario);
         try {

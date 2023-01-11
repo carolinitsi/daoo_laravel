@@ -1,19 +1,12 @@
 <x-dash-layout>
     <h1>Editar:</h1>
-    <form id=edit action="{{route('update',$usuario->id)}}" method="POST">
+    <form id=edit action="{{route('update',$comentario->id)}}" method="POST">
         @csrf
         <table>
             <tr>
-                <td>Nome:</td>
-                <td><input type="text" name="nome" value="{{$usuario->nome}}"/></td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" name="email" value="{{$usuario->email}}"/></td>
-            </tr>
-            <tr>
-                <td>Profissão:</td>
-                <td><input type="text" name="profissao" value="{{$usuario->profissao}}"/></td>
+                <td>Editar Comentario:</td>
+                <td><input type="text" name="nome" value="{{$comentario->comentario}}"/></td>
+                <td><input type="text" name="nome" value="{{$comentario->post_id}}"/></td>
             </tr>
         </table>
     </form>

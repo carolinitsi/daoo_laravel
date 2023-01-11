@@ -7,6 +7,9 @@
             <tr>
                 <td>Comentario:</td>
                 <td><input type="text" name="comentario"/></td>
+                <td><input type="text" name="post_id"/></td>
+                <table>
+        </table>
             </tr>
             <tr align="center">
                 <td colspan="2"><input type="submit" value="Criar"/></td>

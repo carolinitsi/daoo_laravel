@@ -16,8 +16,8 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ route('edit', $publicacao->id) }}"><button>editar</button></a>
-        <a href="{{ route('delete', $publicacao->id) }}"><button>deletar</button></a>
+        <a href="{{ route('publicacao.edit', $publicacao->id) }}"><button>editar</button></a>
+        <a href="{{ route('publicacao.delete', $publicacao->id) }}"><button>deletar</button></a>
     @else
         <p>Publicação não encontrada! </p>
     @endif
